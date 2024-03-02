@@ -64,17 +64,14 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   /* ___keyboard_event_functions___ */
 
   const handleKeyDown = (e) => {
-    if (e.key === "ArrowLeft") {
-      if (!isRotating) {
-        setIsRotating(true);
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      setIsRotating(true);
+      if (e.key === "ArrowLeft") {
         // Rotate the object to the left by a small angle
         islandRef.current.rotation.y += 0.01 * Math.PI;
       } else if (e.key === "ArrowRight") {
-        if (!isRotating) {
-          setIsRotating(true);
-          // Rotate the object to the right by a small angle
-          islandRef.current.rotation.y -= 0.01 * Math.PI;
-        }
+        // Rotate the object to the right by a small angle
+        islandRef.current.rotation.y -= 0.01 * Math.PI;
       }
     }
   };
@@ -82,6 +79,18 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   const handleKeyUp = (e) => {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       setIsRotating(false);
+    }
+  };
+
+  const handlePress = (e) => {
+    if (isRotating) {
+      if (e.key === "ArrowLeft") {
+        // Rotate the object to the left by a small angle
+        islandRef.current.rotation.y += 0.01 * Math.PI;
+      } else if (e.key === "ArrowRight") {
+        // Rotate the object to the right by a small angle
+        islandRef.current.rotation.y -= 0.01 * Math.PI;
+      }
     }
   };
 
@@ -141,6 +150,7 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     canvas.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
+    document.addEventListener("keydown", handlePress);
 
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
@@ -148,6 +158,7 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
       canvas.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener("keydown", handlePress);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 

@@ -7,15 +7,10 @@ import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
 
-{
-  /*<div className="absolute top-28 left-0 right-0 z-20 flex items-center justify-center">
-  popop
-</div> */
-}
-
 const Home = () => {
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
+  const [directionRotatiing, setDirectionRotating] = useState(0);
 
   const adjustIslanForScreenSize = () => {
     let screenScale = window.innerWidth < 768 ? [0.9, 0.9, 0.9] : [1, 1, 1];
@@ -53,7 +48,10 @@ const Home = () => {
           />
 
           <Bird />
-          <Sky isRotating={isRotating} />
+          <Sky
+            isRotating={isRotating}
+            directionRotatiing={directionRotatiing}
+          />
           <Island
             position={islandPosition}
             scale={islandScale}
@@ -61,6 +59,7 @@ const Home = () => {
             isRotating={isRotating}
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
+            setDirectionRotating={setDirectionRotating}
           />
           <Plane
             isRotating={isRotating}

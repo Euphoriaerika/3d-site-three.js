@@ -13,7 +13,13 @@ import { a } from "@react-spring/three";
 
 import islandScene from "../assets/3d/island.glb";
 
-const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
+const Island = ({
+  isRotating,
+  setIsRotating,
+  setCurrentStage,
+  setDirectionRotating,
+  ...props
+}) => {
   const islandRef = useRef();
 
   const { gl, viewport } = useThree();
@@ -27,7 +33,7 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   const handlePointerDown = (e) => {
     e.stopPropagation();
-    if (!e.touches){
+    if (!e.touches) {
       e.preventDefault();
     }
     setIsRotating(true);
@@ -40,7 +46,7 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   const handlePointerUp = (e) => {
     e.stopPropagation();
-    if (!e.touches){
+    if (!e.touches) {
       e.preventDefault();
     }
     setIsRotating(false);
@@ -48,15 +54,16 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   const handlePointerMove = (e) => {
     e.stopPropagation();
-    if (!e.touches){
+    if (!e.touches) {
       e.preventDefault();
     }
     if (isRotating) {
       // Determine the horizontal position of the pointer (mouse or touch)
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      console.log(clientX);
       // Calculate the change in position normalized by the viewport width
       const delta = (clientX - lastX.current) / viewport.width;
+
+      setDirectionRotating(delta);
 
       // Update the rotation of the object based on the calculated delta
       islandRef.current.rotation.y += delta * 0.01 * Math.PI;
@@ -101,9 +108,11 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
       if (e.key === "ArrowLeft") {
         // Rotate the object to the left by a small angle
         islandRef.current.rotation.y += 0.01 * Math.PI;
+        setDirectionRotating(0.2);
       } else if (e.key === "ArrowRight") {
         // Rotate the object to the right by a small angle
         islandRef.current.rotation.y -= 0.01 * Math.PI;
+        setDirectionRotating(-0.2);
       }
     }
   };

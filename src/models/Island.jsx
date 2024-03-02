@@ -27,7 +27,9 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   const handlePointerDown = (e) => {
     e.stopPropagation();
-    e.preventDefault();
+    if (!e.touches){
+      e.preventDefault();
+    }
     setIsRotating(true);
 
     // Determine the horizontal position of the pointer (mouse or touch)
@@ -38,17 +40,21 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
 
   const handlePointerUp = (e) => {
     e.stopPropagation();
-    e.preventDefault();
+    if (!e.touches){
+      e.preventDefault();
+    }
     setIsRotating(false);
   };
 
   const handlePointerMove = (e) => {
     e.stopPropagation();
-    e.preventDefault();
-
+    if (!e.touches){
+      e.preventDefault();
+    }
     if (isRotating) {
       // Determine the horizontal position of the pointer (mouse or touch)
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      console.log(clientX);
       // Calculate the change in position normalized by the viewport width
       const delta = (clientX - lastX.current) / viewport.width;
 
@@ -64,6 +70,9 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   /* ___keyboard_event_functions___ */
 
   const handleKeyDown = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       setIsRotating(true);
       if (e.key === "ArrowLeft") {
@@ -77,12 +86,17 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
   };
 
   const handleKeyUp = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       setIsRotating(false);
     }
   };
 
   const handlePress = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     if (isRotating) {
       if (e.key === "ArrowLeft") {
         // Rotate the object to the left by a small angle
@@ -151,6 +165,9 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
     document.addEventListener("keydown", handlePress);
+    document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("touchend", handlePointerUp);
+    document.addEventListener("touchmove", handlePointerMove);
 
     return () => {
       canvas.removeEventListener("pointerdown", handlePointerDown);
@@ -159,6 +176,9 @@ const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
       document.removeEventListener("keydown", handlePress);
+      document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("touchend", handlePointerUp);
+      document.removeEventListener("touchmove", handlePointerMove);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 

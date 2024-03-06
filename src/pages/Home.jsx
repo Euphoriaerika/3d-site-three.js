@@ -49,9 +49,9 @@ const Home = () => {
           <directionalLight position={[1, 1, 1]} intensity={2} />
           <ambientLight intensity={0.5} />
           <hemisphereLight
-            skyColor="#FAA300"
-            groundColor="#000000"
-            intensity={1}
+            skyColor="#F5DD61"
+            groundColor="#FAA300"
+            intensity={1.4}
           />
 
           {/* 3D models/components */}

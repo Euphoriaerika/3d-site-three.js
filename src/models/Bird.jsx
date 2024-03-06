@@ -21,23 +21,22 @@ const Bird = () => {
   // Use useFrame to perform animations in the render loop
   useFrame(({ clock, camera }) => {
     // Update the Y position to simulate flight moving in a sin wave
+
+    // The first argument, clock.elapsedTime, changes over time, resulting in a sinusoidal variation of the function.
+    // Multiplication sets the amplitude of the bird's oscillation.
+    // Addition modifies the initial position of the bird.
     birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 
-    // Adjust rotation based on camera position for a turning effect
-    if (birdRef.current.rotation.x > camera.position.x + 10) {
-      birdRef.current.rotation.y = Math.PI;
-    } else if (birdRef.current.rotation.x < camera.position.x + 10) {
-      birdRef.current.rotation.y = 0;
-    }
+    // Move the bird along the X and Z axes in a circular motion
+    const radius = 4; // Circle radius
+    const speed = -0.3; // Movement speed
+    const angle = clock.elapsedTime * speed; // Angle displacement over time
 
-    // Move the bird along the X and Z axes based on rotation
-    if (birdRef.current.rotation.y === 0) {
-      birdRef.current.position.x += 0.01;
-      birdRef.current.position.z -= 0.01;
-    } else {
-      birdRef.current.position.x -= 0.01;
-      birdRef.current.position.z += 0.01;
-    }
+    birdRef.current.position.x = radius * Math.cos(angle - Math.PI);
+    birdRef.current.position.z = radius * Math.sin(angle);
+    birdRef.current.position.y = Math.sin(angle) + 2;
+    // Bird rotation formula relative to rotation around the object
+    birdRef.current.rotation.y = angle + Math.PI / 2;
   });
 
   // Return a mesh with the loaded bird model

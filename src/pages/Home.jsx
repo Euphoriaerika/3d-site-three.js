@@ -6,6 +6,7 @@ import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
+import HomeInfo from "../components/HomeInfo";
 
 const Home = () => {
   // State to track the current stage, rotation status, and rotation direction
@@ -36,6 +37,9 @@ const Home = () => {
 
   return (
     <section className="w-full h-screen relative">
+      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+        {currentStage && <HomeInfo currentStage={currentStage} />}
+      </div>
       {/* Three.js Canvas component for 3D rendering */}
       <Canvas
         className={`w-full h-screen bg-transparent ${

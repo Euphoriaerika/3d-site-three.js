@@ -5,8 +5,10 @@ import { Canvas } from "@react-three/fiber";
 import Fox from "../models/Fox";
 import Loader from "../components/Loader";
 
+
+// A contact page component with a form for sending a message to email
 const Contact = () => {
-  // Use useRef to reference the form element
+  // Create a ref to hold a reference to the mesh
   const formRef = useRef();
   // Use useState to store the form state and loading status
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -66,7 +68,7 @@ const Contact = () => {
 
   // Set fox animation to 'walk' when the input element gains focus.
   const handleFocus = () => setCurrentAnimation("walk");
-  
+
   // Set fox animation to 'idle' when the input element loses focus.
   const handleBlur = () => setCurrentAnimation("idle");
 

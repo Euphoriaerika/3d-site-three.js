@@ -1,5 +1,6 @@
 import { Html } from "@react-three/drei";
 
+// Component representing a loader animation
 const Loader = () => {
   return (
     <Html>

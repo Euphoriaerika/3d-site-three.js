@@ -1,13 +1,16 @@
 import { useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+
 import Loader from "../components/Loader";
-import { SpotLight } from "@react-three/drei";
+import HomeInfo from "../components/HomeInfo";
+
 import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
-import HomeInfo from "../components/HomeInfo";
 
+
+// Home page component that runs on startup
 const Home = () => {
   // State to track the current stage, rotation status, and rotation direction
   const [currentStage, setCurrentStage] = useState(1);
@@ -85,5 +88,4 @@ const Home = () => {
   );
 };
 
-// Export the Home component as the default export
 export default Home;

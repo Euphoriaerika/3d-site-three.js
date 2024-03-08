@@ -4,14 +4,20 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 import scene from "../assets/3d/fox.glb";
 
 const Fox = ({ currentAnimation, ...props }) => {
+  // Create a ref to hold a reference to the mesh
   const group = useRef();
+  // Load the objects, materials and animations from the glTF scene
   const { nodes, materials, animations } = useGLTF(scene);
+  // Extract animation actions using useAnimations hook
   const { actions } = useAnimations(animations, group);
 
+  // Use useEffect to control animations based on the form state
   useEffect(() => {
+    // Stop all existing animation actions before starting a new one.
     Object.values(actions).forEach((action) => action.stop());
 
     if (actions[currentAnimation]) {
+      // Play the animation corresponding to the 'currentAnimation' prop.
       actions[currentAnimation].play();
     }
   }, [actions, currentAnimation]);

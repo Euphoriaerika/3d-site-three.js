@@ -7,7 +7,7 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 const Plane = ({ isRotating, ...props }) => {
   // Create a ref to hold a reference to the mesh
   const ref = useRef();
-  // Load the plane model and animations from the glTF file
+  // Load the plane model and animations using useGLTF hook
   const { scene, animations } = useGLTF(planeScene);
   // Extract animation actions using useAnimations hook
   const { actions } = useAnimations(animations, ref);
@@ -23,7 +23,6 @@ const Plane = ({ isRotating, ...props }) => {
     }
   }, [actions, isRotating]);
 
-  // Return a mesh with the loaded plane model
   return (
     <mesh {...props} ref={ref}>
       <primitive object={scene} />
@@ -31,5 +30,4 @@ const Plane = ({ isRotating, ...props }) => {
   );
 };
 
-// Export the Plane component as the default export
 export default Plane;

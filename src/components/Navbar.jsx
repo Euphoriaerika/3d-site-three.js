@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 
+// Сomponent representing the website's navigation bar
 const Navbar = () => {
   return (
     <header className="header">

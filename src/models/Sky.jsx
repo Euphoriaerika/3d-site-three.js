@@ -21,7 +21,6 @@ const Sky = ({ isRotating, directionRotatiing }) => {
     }
   });
 
-  // Return a mesh with the loaded sky model
   return (
     <mesh ref={skyRef}>
       <primitive object={sky.scene} />
@@ -29,5 +28,4 @@ const Sky = ({ isRotating, directionRotatiing }) => {
   );
 };
 
-// Export the Sky component as the default export
 export default Sky;

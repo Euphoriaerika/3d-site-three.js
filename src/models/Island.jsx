@@ -12,11 +12,11 @@ const Island = ({
   setDirectionRotating,
   ...props
 }) => {
-  // Ref to store a reference to the group of island objects
+  // Create a ref to hold a reference to the group of island objects
   const islandRef = useRef();
   const { gl, viewport } = useThree();
 
-  // Get objects and materials from the glTF scene
+  // Load the objects and materials from the glTF scene
   const { nodes, materials } = useGLTF(islandScene);
 
   // Ref to store the last horizontal position of the mouse
@@ -207,5 +207,4 @@ const Island = ({
   );
 };
 
-// Export the Island component as the default export
 export default Island;

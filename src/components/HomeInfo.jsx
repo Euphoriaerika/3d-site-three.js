@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import arrow from "../assets/icons/arrow.svg";
 
+// Component representing an information box with a link button
 const InfoBox = ({ text, link, btnText }) => (
   <div className="info-box">
     <p className="font-medium sm:text-xl text-center">{text}</p>
@@ -12,6 +13,7 @@ const InfoBox = ({ text, link, btnText }) => (
   </div>
 );
 
+// Object containing JSX elements for different content stages.
 const renderContent = {
   1: (
     <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
@@ -42,7 +44,9 @@ const renderContent = {
   ),
 };
 
+// Component to render content based on the current stage.
 const HomeInfo = ({ currentStage }) => {
+  // Render content based on the provided stage or return null if no content is available.
   return renderContent[currentStage] || null;
 };
 

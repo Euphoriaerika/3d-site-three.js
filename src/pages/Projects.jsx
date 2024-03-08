@@ -1,5 +1,4 @@
-import React from 'react'
-
+// Portfolio page component
 const Projects = () => {
   return (
     <div>Projects</div>

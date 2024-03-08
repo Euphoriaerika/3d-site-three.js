@@ -3,8 +3,10 @@ import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 
 import Fox from "../models/Fox";
-import Loader from "../components/Loader";
 
+import Loader from "../components/Loader";
+import Alert from "../components/Alert";
+import useAlert from "../hooks/useAlert";
 
 // A contact page component with a form for sending a message to email
 const Contact = () => {
@@ -14,6 +16,9 @@ const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
+
+  // Use useAlert hook to manage alert state
+  const { alert, showAlert, hideAlert } = useAlert();
 
   // Change handler to update the form state on input
   const handleChange = (e) => {
@@ -45,13 +50,20 @@ const Contact = () => {
       )
       .then(() => {
         setIsLoading(false);
-        // TODO: show success message
+        // Upon successful form submission, show an alert
+        showAlert({
+          show: true,
+          text: "Message sent successfully!",
+          type: "success",
+        });
         // TODO: hide an alert
 
         // Upon successful form submission, after a 3-second timeout, switches the fox animation
         // from the running state to the idle state.
         setTimeout(() => {
           setCurrentAnimation("idle");
+          // Upon completion of the timeout, hide the alert
+          hideAlert();
 
           // Reset the form after submission
           setForm({ name: "", email: "", message: "" });
@@ -60,9 +72,15 @@ const Contact = () => {
       .catch((error) => {
         // Disable loading state after submission attempt, log error, switch fox animation to idle.
         setIsLoading(false);
+
         console.log(error);
         setCurrentAnimation("idle");
-        // TODO: show error message
+        // Upon error, show an alert
+        showAlert({
+          show: true,
+          text: "Something went wrong. Please try again.",
+          type: "danger",
+        });
       });
   };
 
@@ -74,6 +92,7 @@ const Contact = () => {
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert} />}
       <div className="flex-1 min-x-[50%] flex flex-col">
         <h1 className="head-text">Get it touch</h1>
         <form

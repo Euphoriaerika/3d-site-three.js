@@ -2,17 +2,23 @@ import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  // Use useRef to reference the form element
   const formRef = useRef();
+  // Use useState to store the form state and loading status
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
 
+  // Change handler to update the form state on input
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  // Submit handler for form submission
   const hendleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
+    // Use the emailjs library to send an email
     emailjs
       .send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
@@ -31,6 +37,7 @@ const Contact = () => {
         // TODO: show success message
         // TODO: hide an alert
 
+        // Reset the form after submission
         setForm({ name: "", email: "", message: "" });
       })
       .catch((error) => {

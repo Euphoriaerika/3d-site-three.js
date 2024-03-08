@@ -11,6 +11,7 @@ const Contact = () => {
   // Use useState to store the form state and loading status
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [currentAnimation, setCurrentAnimation] = useState("idle");
 
   // Change handler to update the form state on input
   const handleChange = (e) => {
@@ -21,10 +22,14 @@ const Contact = () => {
   const hendleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    // Upon submitting, triggers the running animation of the fox
+    setCurrentAnimation("hit");
 
     // Use the emailjs library to send an email
     emailjs
       .send(
+        // Accessing environment variables for EmailJS service and template IDs
+        // These variables can be defined in the .env.local file at the root directory
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
@@ -41,17 +46,29 @@ const Contact = () => {
         // TODO: show success message
         // TODO: hide an alert
 
-        // Reset the form after submission
-        setForm({ name: "", email: "", message: "" });
+        // Upon successful form submission, after a 3-second timeout, switches the fox animation
+        // from the running state to the idle state.
+        setTimeout(() => {
+          setCurrentAnimation("idle");
+
+          // Reset the form after submission
+          setForm({ name: "", email: "", message: "" });
+        }, [3000]);
       })
       .catch((error) => {
+        // Disable loading state after submission attempt, log error, switch fox animation to idle.
         setIsLoading(false);
         console.log(error);
+        setCurrentAnimation("idle");
         // TODO: show error message
       });
   };
-  const handleFocus = () => {};
-  const handleBlur = () => {};
+
+  // Set fox animation to 'walk' when the input element gains focus.
+  const handleFocus = () => setCurrentAnimation("walk");
+  
+  // Set fox animation to 'idle' when the input element loses focus.
+  const handleBlur = () => setCurrentAnimation("idle");
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
@@ -120,6 +137,7 @@ const Contact = () => {
           <ambientLight intensity={0.5} />
           <Suspense fallback={<Loader />}>
             <Fox
+              currentAnimation={currentAnimation}
               position={[0.5, 0.35, 0]}
               rotation={[12.6, -0.6, 0]}
               scale={[0.5, 0.5, 0.5]}

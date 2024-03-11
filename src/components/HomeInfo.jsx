@@ -22,21 +22,21 @@ const renderContent = {
   ),
   2: (
     <InfoBox
-      text="Performed freelance orders and independently developed many projects, where he acquired many skills."
+      text="Performed freelance orders and independently developed numerous projects, acquiring significant skills in the process."
       link="/about"
       btnText="Learn More"
     />
   ),
   3: (
     <InfoBox
-      text="Would you like to learn more about my projects? Here are some of my projects!"
+      text="Would you like to learn more about my projects? Here, I present some of them!"
       link="/projects"
       btnText="Visit my portfolio"
     />
   ),
   4: (
     <InfoBox
-      text="I am looking for new opportunities. If you want to work with me, please contact me."
+      text="I am actively seeking new opportunities. If you are interested in collaborating with me, please feel free to contact."
       link="/contact"
       btnText="Let's talk"
     />

@@ -1,4 +1,4 @@
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 
 import Loader from "../components/Loader";
@@ -9,9 +9,26 @@ import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
 
+import sakura from "../assets/sakura.mp3";
+import soundon from "../assets/icons/soundon.png";
+import soundoff from "../assets/icons/soundoff.png";
 
 // Home page component that runs on startup
 const Home = () => {
+  const audioRef = useRef(new Audio(sakura));
+  audioRef.current.volume = 0.4;
+  audioRef.current.loop = true;
+  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+
+  useEffect(() => {
+    if (isPlayingMusic) {
+      audioRef.current.play();
+    }
+    return () => {
+      audioRef.current.pause();
+    };
+  }, [isPlayingMusic]);
+
   // State to track the current stage, rotation status, and rotation direction
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
@@ -84,6 +101,14 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
+      <div className="absolute bottom-4 right-4">
+        <img
+          className="w-10 h-10 cursor-pointer object-contain"
+          src={!isPlayingMusic ? soundoff : soundon}
+          alt="sound"
+          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
+        />
+      </div>
     </section>
   );
 };

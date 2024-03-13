@@ -57,7 +57,7 @@ const Island = ({
     if (!e.touches) {
       e.preventDefault();
     }
-    
+
     if (isRotating) {
       // Determine the horizontal position of the pointer (mouse or touch)
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -88,10 +88,12 @@ const Island = ({
       if (e.key === "ArrowLeft") {
         // Rotate the object to the left by a small angle
         islandRef.current.rotation.y += 0.01 * Math.PI;
+        rotationSpeed.current = 0.0125;
         setDirectionRotating(0.2);
       } else if (e.key === "ArrowRight") {
         // Rotate the object to the right by a small angle
         islandRef.current.rotation.y -= 0.01 * Math.PI;
+        rotationSpeed.current = -0.0125;
         setDirectionRotating(-0.2);
       }
     }

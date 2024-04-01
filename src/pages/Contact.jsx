@@ -2,16 +2,13 @@ import { useState, useRef, Suspense } from "react";
 import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 
-import Fox from "../models/Fox";
-
 import Loader from "../components/Loader";
 import Alert from "../components/Alert";
 import useAlert from "../hooks/useAlert";
+import Avatar from "../models/Avatar";
 
 // A contact page component with a form for sending a message to email
 const Contact = () => {
-  // Create a ref to hold a reference to the mesh
-  const formRef = useRef();
   // Use useState to store the form state and loading status
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isLoading, setIsLoading] = useState(false);
@@ -29,8 +26,8 @@ const Contact = () => {
   const hendleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // Upon submitting, triggers the running animation of the fox
-    setCurrentAnimation("hit");
+    // Upon submitting, triggers the running animation of the avatar
+    setCurrentAnimation("flip");
 
     // Use the emailjs library to send an email
     emailjs
@@ -56,9 +53,8 @@ const Contact = () => {
           text: "Message sent successfully!",
           type: "success",
         });
-        // TODO: hide an alert
 
-        // Upon successful form submission, after a 3-second timeout, switches the fox animation
+        // Upon successful form submission, after a 5.2-second timeout, switches the avatar animation
         // from the running state to the idle state.
         setTimeout(() => {
           setCurrentAnimation("idle");
@@ -67,10 +63,10 @@ const Contact = () => {
 
           // Reset the form after submission
           setForm({ name: "", email: "", message: "" });
-        }, [3000]);
+        }, [5200]);
       })
       .catch((error) => {
-        // Disable loading state after submission attempt, log error, switch fox animation to idle.
+        // Disable loading state after submission attempt, log error, switch avatar animation to idle.
         setIsLoading(false);
 
         console.log(error);
@@ -84,10 +80,10 @@ const Contact = () => {
       });
   };
 
-  // Set fox animation to 'walk' when the input element gains focus.
-  const handleFocus = () => setCurrentAnimation("walk");
+  // Set avatar animation to 'texting' when the input element gains focus.
+  const handleFocus = () => setCurrentAnimation("texting");
 
-  // Set fox animation to 'idle' when the input element loses focus.
+  // Set avatar animation to 'idle' when the input element loses focus.
   const handleBlur = () => setCurrentAnimation("idle");
 
   return (
@@ -157,11 +153,11 @@ const Contact = () => {
           <directionalLight intensity={2.5} position={[0, 0, 1]} />
           <ambientLight intensity={0.5} />
           <Suspense fallback={<Loader />}>
-            <Fox
+            <Avatar
               currentAnimation={currentAnimation}
-              position={[0.5, 0.35, 0]}
-              rotation={[12.6, -0.6, 0]}
-              scale={[0.5, 0.5, 0.5]}
+              position={[0, -2.5, 0]}
+              rotation={[0.2, -0.5, 0]}
+              scale={[2.5, 2.5, 2.5]}
             />
           </Suspense>
         </Canvas>

@@ -63,7 +63,7 @@ const Contact = () => {
 
           // Reset the form after submission
           setForm({ name: "", email: "", message: "" });
-        }, [5200]);
+        }, [5000]);
       })
       .catch((error) => {
         // Disable loading state after submission attempt, log error, switch avatar animation to idle.

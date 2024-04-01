@@ -7,7 +7,7 @@ import HomeInfo from "../components/HomeInfo";
 import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Bird from "../models/Bird";
-import Plane from "../models/Plane";
+import Witch from "../models/Witch";
 
 import sakura from "../assets/sakura.mp3";
 import soundon from "../assets/icons/soundon.png";
@@ -43,17 +43,18 @@ const Home = () => {
     return [screenScale, screenPosition, rotation];
   };
 
-  // Function to adjust plane properties based on screen size
-  const adjustPlaneForScreenSize = () => {
-    let screenScale = window.innerWidth < 768 ? [1.5, 1.5, 1.5] : [3, 3, 3];
-    let screenPosition = window.innerWidth < 768 ? [0, -1.5, 0] : [0, -4, -4];
+  // Function to adjust witch properties based on screen size
+  const adjustWitchForScreenSize = () => {
+    let screenScale =
+      window.innerWidth < 768 ? [0.03, 0.03, 0.03] : [0.01, 0.01, 0.01];
+    let screenPosition = window.innerWidth < 768 ? [0, 0, 0] : [0, -0.5, 4.5];
 
     return [screenScale, screenPosition];
   };
 
   // Destructure values from adjustment functions
   const [islandScale, islandPosition, rotation] = adjustIslanForScreenSize();
-  const [planeScale, planePosition] = adjustPlaneForScreenSize();
+  const [witchScale, witchPosition] = adjustWitchForScreenSize();
 
   return (
     <section className="w-full h-screen relative">
@@ -93,11 +94,11 @@ const Home = () => {
             setCurrentStage={setCurrentStage}
             setDirectionRotating={setDirectionRotating}
           />
-          <Plane
+          <Witch
             isRotating={isRotating}
-            position={planePosition}
-            scale={planeScale}
-            rotation={[0, 20, 0]}
+            position={witchPosition}
+            scale={witchScale}
+            rotation={[0, 0, 0]}
           />
         </Suspense>
       </Canvas>

@@ -45,9 +45,8 @@ const Home = () => {
 
   // Function to adjust witch properties based on screen size
   const adjustWitchForScreenSize = () => {
-    let screenScale =
-      window.innerWidth < 768 ? [0.03, 0.03, 0.03] : [0.01, 0.01, 0.01];
-    let screenPosition = window.innerWidth < 768 ? [0, 0, 0] : [0, -0.5, 4.5];
+    window.innerWidth < 768 ? [0.4, 0.4, 0.4] : [0.6, 0.6, 0.6];
+    let screenPosition = window.innerWidth < 768 ? [0, -5, -4] : [0, -6, -4];
 
     return [screenScale, screenPosition];
   };

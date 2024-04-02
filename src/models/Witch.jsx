@@ -1,15 +1,14 @@
 import { useEffect, useRef } from "react";
 
 // Import the witch model and animation-related hooks from drei
-import scene from "../assets/3d/witch.glb";
+import witchScene from "../assets/3d/witch.glb";
 import { useAnimations, useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 
 const Witch = ({ isRotating, ...props }) => {
   // Create a ref to hold a reference to the mesh
   const group = useRef();
   // Load the witch model and animations using useGLTF hook
-  const { nodes, materials, animations } = useGLTF(scene);
+  const { nodes, materials, animations } = useGLTF(witchScene);
   // Extract animation actions using useAnimations hook
   const { actions } = useAnimations(animations, group);
 
@@ -20,7 +19,6 @@ const Witch = ({ isRotating, ...props }) => {
 
   return (
     <group ref={group} {...props} dispose={null}>
-    <group name="Scene">
       <group name="Object_4" scale={0.056}>
         <skinnedMesh
           name="Object_10"
@@ -73,7 +71,6 @@ const Witch = ({ isRotating, ...props }) => {
         <primitive object={nodes._rootJoint} />
       </group>
     </group>
-  </group>
   );
 };
 

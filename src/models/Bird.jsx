@@ -19,7 +19,7 @@ const Bird = () => {
   }, []);
 
   // Use useFrame to perform animations in the render loop
-  useFrame(({ clock, camera }) => {
+  useFrame(({ clock }) => {
     // Update the Y position to simulate flight moving in a sin wave
 
     // The first argument, clock.elapsedTime, changes over time, resulting in a sinusoidal variation of the function.

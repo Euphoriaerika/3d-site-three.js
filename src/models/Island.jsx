@@ -35,6 +35,7 @@ const Island = ({
       e.preventDefault();
     }
     setIsRotating(true);
+    setDirectionRotating(islandRef.current.rotation.y);
 
     // Determine the horizontal position of the pointer (mouse or touch)
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -64,12 +65,11 @@ const Island = ({
       // Calculate the change in position normalized by the viewport width
       const delta = (clientX - lastX.current) / viewport.width;
 
-      // Set the direction of rotation for other objects (Sky) based on the calculated delta
-      setDirectionRotating(delta);
-
       // Update the rotation of the object based on the calculated delta
       islandRef.current.rotation.y += delta * 0.01 * Math.PI;
       // Update the last recorded X-coordinate for the next calculation
+      setDirectionRotating(islandRef.current.rotation.y);
+
       lastX.current = clientX;
       // Update the rotation speed with the calculated delta
       rotationSpeed.current = delta * 0.01 * Math.PI;
@@ -88,13 +88,13 @@ const Island = ({
       if (e.key === "ArrowLeft") {
         // Rotate the object to the left by a small angle
         islandRef.current.rotation.y += 0.01 * Math.PI;
+        setDirectionRotating(islandRef.current.rotation.y);
         rotationSpeed.current = 0.0125;
-        setDirectionRotating(0.2);
       } else if (e.key === "ArrowRight") {
         // Rotate the object to the right by a small angle
         islandRef.current.rotation.y -= 0.01 * Math.PI;
+        setDirectionRotating(islandRef.current.rotation.y);
         rotationSpeed.current = -0.0125;
-        setDirectionRotating(-0.2);
       }
     }
   };
@@ -180,31 +180,106 @@ const Island = ({
       <group rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
         <mesh geometry={nodes.Object_0.geometry} material={materials.Balloon} />
         <mesh geometry={nodes.Object_0_1.geometry} material={materials.Bells} />
-        <mesh geometry={nodes.Object_0_2.geometry} material={materials.BottleRings} />
-        <mesh geometry={nodes.Object_0_3.geometry} material={materials.Bottles} />
-        <mesh geometry={nodes.Object_0_4.geometry} material={materials.BottomCabins} />
-        <mesh geometry={nodes.Object_0_5.geometry} material={materials.Bottom_WoodTiling} />
-        <mesh geometry={nodes.Object_0_6.geometry} material={materials.CabinGlass} />
-        <mesh geometry={nodes.Object_0_7.geometry} material={materials.Chimney_PBolts} />
-        <mesh geometry={nodes.Object_0_8.geometry} material={materials.ClothesPipeWater} />
-        <mesh geometry={nodes.Object_0_9.geometry} material={materials.CrateBarrel} />
-        <mesh geometry={nodes.Object_0_10.geometry} material={materials.FirewoodRope} />
-        <mesh geometry={nodes.Object_0_11.geometry} material={materials.Grass_base} />
-        <mesh geometry={nodes.Object_0_12.geometry} material={materials.Groundrocks} />
-        <mesh geometry={nodes.Object_0_13.geometry} material={materials.House_PlasterWall} />
-        <mesh geometry={nodes.Object_0_14.geometry} material={materials.House_Plaster_Inside} />
-        <mesh geometry={nodes.Object_0_15.geometry} material={materials.House_Wood_tiling} />
-        <mesh geometry={nodes.Object_0_16.geometry} material={materials.PipeLantern} />
-        <mesh geometry={nodes.Object_0_17.geometry} material={materials.PipeLanternLens} />
-        <mesh geometry={nodes.Object_0_18.geometry} material={materials.Platform_WoodTiling} />
-        <mesh geometry={nodes.Object_0_19.geometry} material={materials.RoofMaterial} />
-        <mesh geometry={nodes.Object_0_20.geometry} material={materials.RoofMaterial2} />
-        <mesh geometry={nodes.Object_0_21.geometry} material={materials.Shed_PlasterWall} />
-        <mesh geometry={nodes.Object_0_22.geometry} material={materials.Shed_Wood_Tiling} />
-        <mesh geometry={nodes.Object_0_23.geometry} material={materials.StonesChimney} />
-        <mesh geometry={nodes.Object_0_24.geometry} material={materials.WindowGlass} />
-        <mesh geometry={nodes.Object_0_25.geometry} material={materials.firewall} />
-        <mesh geometry={nodes.Object_0_26.geometry} material={materials.stone_wall} />
+        <mesh
+          geometry={nodes.Object_0_2.geometry}
+          material={materials.BottleRings}
+        />
+        <mesh
+          geometry={nodes.Object_0_3.geometry}
+          material={materials.Bottles}
+        />
+        <mesh
+          geometry={nodes.Object_0_4.geometry}
+          material={materials.BottomCabins}
+        />
+        <mesh
+          geometry={nodes.Object_0_5.geometry}
+          material={materials.Bottom_WoodTiling}
+        />
+        <mesh
+          geometry={nodes.Object_0_6.geometry}
+          material={materials.CabinGlass}
+        />
+        <mesh
+          geometry={nodes.Object_0_7.geometry}
+          material={materials.Chimney_PBolts}
+        />
+        <mesh
+          geometry={nodes.Object_0_8.geometry}
+          material={materials.ClothesPipeWater}
+        />
+        <mesh
+          geometry={nodes.Object_0_9.geometry}
+          material={materials.CrateBarrel}
+        />
+        <mesh
+          geometry={nodes.Object_0_10.geometry}
+          material={materials.FirewoodRope}
+        />
+        <mesh
+          geometry={nodes.Object_0_11.geometry}
+          material={materials.Grass_base}
+        />
+        <mesh
+          geometry={nodes.Object_0_12.geometry}
+          material={materials.Groundrocks}
+        />
+        <mesh
+          geometry={nodes.Object_0_13.geometry}
+          material={materials.House_PlasterWall}
+        />
+        <mesh
+          geometry={nodes.Object_0_14.geometry}
+          material={materials.House_Plaster_Inside}
+        />
+        <mesh
+          geometry={nodes.Object_0_15.geometry}
+          material={materials.House_Wood_tiling}
+        />
+        <mesh
+          geometry={nodes.Object_0_16.geometry}
+          material={materials.PipeLantern}
+        />
+        <mesh
+          geometry={nodes.Object_0_17.geometry}
+          material={materials.PipeLanternLens}
+        />
+        <mesh
+          geometry={nodes.Object_0_18.geometry}
+          material={materials.Platform_WoodTiling}
+        />
+        <mesh
+          geometry={nodes.Object_0_19.geometry}
+          material={materials.RoofMaterial}
+        />
+        <mesh
+          geometry={nodes.Object_0_20.geometry}
+          material={materials.RoofMaterial2}
+        />
+        <mesh
+          geometry={nodes.Object_0_21.geometry}
+          material={materials.Shed_PlasterWall}
+        />
+        <mesh
+          geometry={nodes.Object_0_22.geometry}
+          material={materials.Shed_Wood_Tiling}
+        />
+        <mesh
+          geometry={nodes.Object_0_23.geometry}
+          material={materials.StonesChimney}
+        />
+        <mesh
+          geometry={nodes.Object_0_24.geometry}
+          material={materials.WindowGlass}
+        />
+        <mesh
+          geometry={nodes.Object_0_25.geometry}
+          material={materials.firewall}
+        />
+        <mesh
+          geometry={nodes.Object_0_26.geometry}
+          material={materials.stone_wall}
+        />
       </group>
     </a.group>
   );

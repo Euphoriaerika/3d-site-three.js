@@ -18,7 +18,7 @@ const Home = () => {
   const audioRef = useRef(new Audio(sakura));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
-  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
+  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -36,16 +36,17 @@ const Home = () => {
 
   // Function to adjust island properties based on screen size
   const adjustIslanForScreenSize = () => {
-    let screenScale = window.innerWidth < 768 ? [0.9, 0.9, 0.9] : [1, 1, 1];
-    let screenPosition = [0, -6.5, -43];
-    let rotation = [0.1, 4.7, 0];
+    let screenScale = window.innerWidth < 768 ? [2, 2, 2] : [2.4, 2.4, 2.4];
+    let screenPosition = [0, -10, -43];
+    let rotation = [0, -Math.PI / 2, 0];
 
     return [screenScale, screenPosition, rotation];
   };
 
   // Function to adjust witch properties based on screen size
   const adjustWitchForScreenSize = () => {
-    window.innerWidth < 768 ? [0.4, 0.4, 0.4] : [0.6, 0.6, 0.6];
+    let screenScale =
+      window.innerWidth < 768 ? [0.4, 0.4, 0.4] : [0.6, 0.6, 0.6];
     let screenPosition = window.innerWidth < 768 ? [0, -5, -4] : [0, -6, -4];
 
     return [screenScale, screenPosition];

@@ -177,34 +177,35 @@ const Island = ({
   return (
     <a.group ref={islandRef} {...props}>
       {/* Mesh elements representing different parts of the island */}
-      <mesh
-        geometry={nodes.polySurface944_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface945_tree1_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface946_tree2_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface947_tree1_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface948_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.polySurface949_tree_body_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
-      <mesh
-        geometry={nodes.pCube11_rocks1_0.geometry}
-        material={materials.PaletteMaterial001}
-      />
+      <group rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+        <mesh geometry={nodes.Object_0.geometry} material={materials.Balloon} />
+        <mesh geometry={nodes.Object_0_1.geometry} material={materials.Bells} />
+        <mesh geometry={nodes.Object_0_2.geometry} material={materials.BottleRings} />
+        <mesh geometry={nodes.Object_0_3.geometry} material={materials.Bottles} />
+        <mesh geometry={nodes.Object_0_4.geometry} material={materials.BottomCabins} />
+        <mesh geometry={nodes.Object_0_5.geometry} material={materials.Bottom_WoodTiling} />
+        <mesh geometry={nodes.Object_0_6.geometry} material={materials.CabinGlass} />
+        <mesh geometry={nodes.Object_0_7.geometry} material={materials.Chimney_PBolts} />
+        <mesh geometry={nodes.Object_0_8.geometry} material={materials.ClothesPipeWater} />
+        <mesh geometry={nodes.Object_0_9.geometry} material={materials.CrateBarrel} />
+        <mesh geometry={nodes.Object_0_10.geometry} material={materials.FirewoodRope} />
+        <mesh geometry={nodes.Object_0_11.geometry} material={materials.Grass_base} />
+        <mesh geometry={nodes.Object_0_12.geometry} material={materials.Groundrocks} />
+        <mesh geometry={nodes.Object_0_13.geometry} material={materials.House_PlasterWall} />
+        <mesh geometry={nodes.Object_0_14.geometry} material={materials.House_Plaster_Inside} />
+        <mesh geometry={nodes.Object_0_15.geometry} material={materials.House_Wood_tiling} />
+        <mesh geometry={nodes.Object_0_16.geometry} material={materials.PipeLantern} />
+        <mesh geometry={nodes.Object_0_17.geometry} material={materials.PipeLanternLens} />
+        <mesh geometry={nodes.Object_0_18.geometry} material={materials.Platform_WoodTiling} />
+        <mesh geometry={nodes.Object_0_19.geometry} material={materials.RoofMaterial} />
+        <mesh geometry={nodes.Object_0_20.geometry} material={materials.RoofMaterial2} />
+        <mesh geometry={nodes.Object_0_21.geometry} material={materials.Shed_PlasterWall} />
+        <mesh geometry={nodes.Object_0_22.geometry} material={materials.Shed_Wood_Tiling} />
+        <mesh geometry={nodes.Object_0_23.geometry} material={materials.StonesChimney} />
+        <mesh geometry={nodes.Object_0_24.geometry} material={materials.WindowGlass} />
+        <mesh geometry={nodes.Object_0_25.geometry} material={materials.firewall} />
+        <mesh geometry={nodes.Object_0_26.geometry} material={materials.stone_wall} />
+      </group>
     </a.group>
   );
 };

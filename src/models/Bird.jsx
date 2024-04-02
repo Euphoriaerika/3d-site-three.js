@@ -15,7 +15,7 @@ const Bird = () => {
 
   // Use useEffect to play the initial animation when the component mounts
   useEffect(() => {
-    actions["Take 001"].play();
+    actions["Fly"].play();
   }, []);
 
   // Use useFrame to perform animations in the render loop
@@ -36,12 +36,12 @@ const Bird = () => {
     birdRef.current.position.z = radius * Math.sin(angle);
     birdRef.current.position.y = Math.sin(angle) + 2;
     // Bird rotation formula relative to rotation around the object
-    birdRef.current.rotation.y = angle + Math.PI / 2;
+    birdRef.current.rotation.y = angle + Math.PI;
   });
 
   // Return a mesh with the loaded bird model
   return (
-    <mesh position={[-5, 2, 1]} scale={[0.003, 0.003, 0.003]} ref={birdRef}>
+    <mesh position={[-5, 2, 1]} scale={[1.2, 1.2, 1.2]} ref={birdRef}>
       <primitive object={scene} />
     </mesh>
   );

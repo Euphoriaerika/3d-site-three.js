@@ -72,8 +72,8 @@ const Home = () => {
         {/* Suspense for loading fallback */}
         <Suspense fallback={<Loader />}>
           {/* Lights for scene illumination */}
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
+          <directionalLight position={[1, 1, 1]} intensity={1.2} />
+          <ambientLight intensity={0.2} />
           <hemisphereLight
             skyColor="#F5DD61"
             groundColor="#FAA300"

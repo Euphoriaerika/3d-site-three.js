@@ -29,7 +29,7 @@ const Sky = ({ isRotating, directionRotating, ...props }) => {
       currentRotation.current = MathUtils.lerp(
         currentRotation.current,
         directionRotating,
-        40 * delta
+        6 * delta
       );
 
       console.log(directionRotating);

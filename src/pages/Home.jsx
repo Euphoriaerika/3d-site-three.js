@@ -9,14 +9,14 @@ import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Witch from "../models/Witch";
 
-import sakura from "../assets/sakura.mp3";
+import sakura from "../assets/Steampunk.mp3";
 import soundon from "../assets/icons/soundon.png";
 import soundoff from "../assets/icons/soundoff.png";
 
 // Home page component that runs on startup
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
-  audioRef.current.volume = 0.4;
+  audioRef.current.volume = 0.1;
   audioRef.current.loop = true;
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
 

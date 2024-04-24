@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { a } from "@react-spring/three";
 
 import islandScene from "../assets/3d/island.glb";
 
@@ -10,6 +9,7 @@ const Island = ({
   setIsRotating,
   setCurrentStage,
   setDirectionRotating,
+  directionRotating,
   ...props
 }) => {
   // Create a ref to hold a reference to the group of island objects
@@ -35,7 +35,6 @@ const Island = ({
       e.preventDefault();
     }
     setIsRotating(true);
-    setDirectionRotating(islandRef.current.rotation.y);
 
     // Determine the horizontal position of the pointer (mouse or touch)
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -67,8 +66,6 @@ const Island = ({
 
       // Update the rotation of the object based on the calculated delta
       islandRef.current.rotation.y += delta * 0.01 * Math.PI;
-      // Update the last recorded X-coordinate for the next calculation
-      setDirectionRotating(islandRef.current.rotation.y);
 
       lastX.current = clientX;
       // Update the rotation speed with the calculated delta
@@ -88,12 +85,10 @@ const Island = ({
       if (e.key === "ArrowLeft") {
         // Rotate the object to the left by a small angle
         islandRef.current.rotation.y += 0.01 * Math.PI;
-        setDirectionRotating(islandRef.current.rotation.y);
         rotationSpeed.current = 0.0125;
       } else if (e.key === "ArrowRight") {
         // Rotate the object to the right by a small angle
         islandRef.current.rotation.y -= 0.01 * Math.PI;
-        setDirectionRotating(islandRef.current.rotation.y);
         rotationSpeed.current = -0.0125;
       }
     }
@@ -110,6 +105,11 @@ const Island = ({
 
   // Animation loop using useFrame
   useFrame(() => {
+    if (Math.abs(islandRef.current.rotation.y - directionRotating) > 0.01) {
+      // This is used by the Sky component to animate its rotation towards the island's rotation direction
+      setDirectionRotating(islandRef.current.rotation.y);
+    }
+
     if (!isRotating) {
       // Damping the rotation speed for smooth slowdown
       rotationSpeed.current *= dampingFactor;
@@ -175,7 +175,7 @@ const Island = ({
 
   // Return the JSX for the Island component
   return (
-    <a.group ref={islandRef} {...props}>
+    <group ref={islandRef} {...props}>
       {/* Mesh elements representing different parts of the island */}
       <group rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
         <mesh geometry={nodes.Object_0.geometry} material={materials.Balloon} />
@@ -281,8 +281,11 @@ const Island = ({
           material={materials.stone_wall}
         />
       </group>
-    </a.group>
+    </group>
   );
 };
 
 export default Island;
+
+
+

@@ -32,7 +32,7 @@ const Home = () => {
   // State to track the current stage, rotation status, and rotation direction
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
-  const [directionRotating, setDirectionRotating] = useState(0);
+  const [directionRotating, setDirectionRotating] = useState(null);
 
   // Function to adjust island properties based on screen size
   const adjustIslanForScreenSize = () => {
@@ -54,7 +54,6 @@ const Home = () => {
 
   // Destructure values from adjustment functions
   const [islandScale, islandPosition, rotation] = adjustIslanForScreenSize();
-  const skyRotation = rotation;
   const [witchScale, witchPosition] = adjustWitchForScreenSize();
 
   return (
@@ -85,7 +84,7 @@ const Home = () => {
           <Sky
             isRotating={isRotating}
             directionRotating={directionRotating}
-            rotation={skyRotation} // rotation must be the same as the island
+            rotation={rotation} // rotation must be the same as the island
           />
           <Island
             position={islandPosition}
@@ -95,6 +94,7 @@ const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
             setDirectionRotating={setDirectionRotating}
+            directionRotating={directionRotating}
           />
           <Witch
             isRotating={isRotating}

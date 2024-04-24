@@ -1,40 +1,22 @@
 import { useGLTF } from "@react-three/drei";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { MathUtils } from "three";
 
 import skyScene from "../assets/3d/sky.glb";
 
-const Sky = ({ isRotating, directionRotating, ...props }) => {
+const Sky = ({ directionRotating, ...props }) => {
   // Load the sky model using useGLTF hook
   const sky = useGLTF(skyScene);
 
   // Create a ref to hold a reference to the mesh
   const skyRef = useRef();
 
-  // Keep track of the current rotation of the sky
-  const currentRotation = useRef(0);
-
-  useEffect(() => {
-    currentRotation.current = skyRef.current.rotation.y;
-  }, []);
-
   // Use useFrame to perform animations in the render loop
   useFrame((_, delta) => {
-    if (isRotating) {
-      /**
-       * Lerp the rotation of the sky towards the directionRotatiing at a smooth rate
-       */
-
-      currentRotation.current = MathUtils.lerp(
-        currentRotation.current,
-        directionRotating,
-        6 * delta
-      );
-
-      console.log(directionRotating);
-      skyRef.current.rotation.y = currentRotation.current;
-    }
+    //Rotate the sky towards the directionRotation at a smooth rate
+    if (directionRotating !== null)
+      skyRef.current.rotation.y +=
+        (directionRotating - skyRef.current.rotation.y) * 6 * delta;
   });
 
   return (

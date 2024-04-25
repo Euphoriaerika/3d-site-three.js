@@ -16,7 +16,7 @@ const Sky = ({ directionRotating, ...props }) => {
     //Rotate the sky towards the directionRotation at a smooth rate
     if (directionRotating !== null)
       skyRef.current.rotation.y +=
-        (directionRotating - skyRef.current.rotation.y) * 6 * delta;
+        (directionRotating - skyRef.current.rotation.y) * 10 * delta;
   });
 
   return (

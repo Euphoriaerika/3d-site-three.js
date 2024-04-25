@@ -13,9 +13,9 @@ const Alert = ({ text, type }) => {
             type === "danger" ? "bg-red-500" : "bg-blue-500"
           } flex rounded-full uppercase px-2 py-1 font-semibold mr-3 text-xs`}
         >
-          {type === "danger" ? "Failed" : "Success"}
+          {type === "danger" ? "Failed" : "Success"}  {/* Text for the icon */}
         </p>
-        <p className="mr-2 text-left">{text}</p>
+        <p className="mr-2 text-left">{text}</p>  {/* Text for the alert */}
       </div>
     </div>
   );

@@ -114,24 +114,18 @@ body:has(.card[data-color="green"]:hover) {
   box-shadow: 16px 0 40px #e4e4e4;
 }
 
-.block-container .btn-back-red {
-  background: linear-gradient(135deg, #ff4b1f -20%, #ff9068 120%);
-}
+/* PROJECT BUTTON COLORS */
 
-.block-container .btn-back-green {
-  background: linear-gradient(135deg, #adfda2 -20%, #11d3f3 120%);
+.block-container .btn-back-purple {
+  background: linear-gradient(135deg, #7117d0 -20%, #c26873 120%);
 }
 
 .block-container .btn-back-yellow {
-  background: linear-gradient(135deg, #f7971e -20%, #ffd200 120%);
+  background: linear-gradient(135deg, #c88d00 -20%, #997600 120%);
 }
 
 .block-container .btn-back-blue {
-  background: linear-gradient(135deg, #0061ff -20%, #60efff 120%);
-}
-
-.block-container .btn-back-orange {
-  background: linear-gradient(135deg, #ff0f7b -20%, #f89b29 120%);
+  background: linear-gradient(135deg, #0d6efd -20%, #0369a1 120%);
 }
 
 .block-container .btn-back-pink {
@@ -140,6 +134,10 @@ body:has(.card[data-color="green"]:hover) {
 
 .block-container .btn-back-black {
   background: linear-gradient(135deg, #0a1647 -20%, #e4e7e4 120%);
+}
+
+.block-container .btn-back-green {
+  background: linear-gradient(135deg, #2b9c40 -20%, #4cae6e 120%);
 }
 
 .block-container .btn-front {

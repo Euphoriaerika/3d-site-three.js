@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import arrow from "../assets/icons/arrow.svg";
+import { arrow } from "../assets/icons";
 
 // Component representing an information box with a link button
 const InfoBox = ({ text, link, btnText }) => (

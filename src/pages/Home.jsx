@@ -10,8 +10,7 @@ import Bird from "../models/Bird";
 import Witch from "../models/Witch";
 
 import sakura from "../assets/Steampunk.mp3";
-import soundon from "../assets/icons/soundon.png";
-import soundoff from "../assets/icons/soundoff.png";
+import { soundon, soundoff } from "../assets/icons";
 
 // Home page component that runs on startup
 const Home = () => {
@@ -104,12 +103,14 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
-      <div className="absolute bottom-4 right-4">
+      <div
+        className="absolute bottom-4 right-4 bg-blue-600 cursor-pointer rounded-full w-10 h-10 flex items-center justify-center"
+        onClick={() => setIsPlayingMusic(!isPlayingMusic)}
+      >
         <img
-          className="w-10 h-10 cursor-pointer object-contain"
+          className="w-3/5 h-3/5 object-contain"
           src={!isPlayingMusic ? soundoff : soundon}
           alt="sound"
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
         />
       </div>
     </section>

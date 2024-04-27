@@ -51,6 +51,11 @@ const Island = ({
     setIsRotating(false);
   };
 
+  // Mouse leave event handler
+  function handlePointerLeave(event) {
+    handlePointerUp(event);
+  }
+
   // Mouse or touch move event handler
   const handlePointerMove = (e) => {
     e.stopPropagation();
@@ -155,6 +160,7 @@ const Island = ({
     canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerup", handlePointerUp);
     canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerleave", handlePointerLeave);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("keyup", handleKeyUp);
     document.addEventListener("touchstart", handlePointerDown);
@@ -165,6 +171,7 @@ const Island = ({
       canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointerup", handlePointerUp);
       canvas.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", handlePointerLeave);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
       document.removeEventListener("touchstart", handlePointerDown);
@@ -286,6 +293,3 @@ const Island = ({
 };
 
 export default Island;
-
-
-

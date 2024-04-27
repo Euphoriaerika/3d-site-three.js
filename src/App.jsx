@@ -5,7 +5,7 @@ import { Home, About, Projects, Contact } from "./pages";
 // Main component representing the entire application
 const App = () => {
   return (
-    <main className="bg-slate-300/20 h-Full">
+    <main className="bg-slate-300/20 h-full min-h-screen">
       {/* Router component to handle navigation */}
       <Router>
         <Navbar />

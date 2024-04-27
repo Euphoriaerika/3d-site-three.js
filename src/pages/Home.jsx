@@ -104,7 +104,7 @@ const Home = () => {
         </Suspense>
       </Canvas>
       <div
-        className="absolute bottom-4 right-4 bg-blue-600 cursor-pointer rounded-full w-10 h-10 flex items-center justify-center"
+        className="music-btn"
         onClick={() => setIsPlayingMusic(!isPlayingMusic)}
       >
         <img

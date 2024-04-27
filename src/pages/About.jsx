@@ -14,7 +14,7 @@ const About = () => {
     <section className="max-container flex flex-col">
       <h1 className="head-text">
         Hello, I'm{" "}
-        <span className="blue-gradient_text font-semibold drop-shadow">
+        <span className="green-gradient_text font-semibold drop-shadow">
           Bohdan
         </span>
       </h1>

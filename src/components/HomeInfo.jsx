@@ -15,7 +15,7 @@ const InfoBox = ({ text, link, btnText }) => (
 // Object containing JSX elements for different content stages.
 const renderContent = {
   1: (
-    <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
+    <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-green py-4 px-8 text-white mx-5">
       Hi, I am <span className="font-semibold">Bohdan</span> 👋
       <br />A Full-Stack Web Developer from Ukraine
     </h1>

@@ -11,7 +11,7 @@ const Projects = () => {
     <section className="max-container">
       <h1 className="head-text">
         My{" "}
-        <span className="blue-gradient_text font-semibold drop-shadow">
+        <span className="green-gradient_text font-semibold drop-shadow">
           Projects
         </span>
       </h1>

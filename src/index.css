@@ -54,14 +54,6 @@ body:has(.card[data-color="green"]:hover) {
     @apply flex justify-between items-center sm:px-16 px-8 py-4 max-w-5xl mx-auto absolute top-0 bg-transparent z-10 right-0 left-0;
   }
 
-  .footer {
-    @apply max-w-5xl mx-auto sm:px-16 pb-6 px-8 flex flex-col gap-7;
-  }
-
-  .footer-container {
-    @apply flex flex-wrap gap-7 items-center justify-between;
-  }
-
   .info-box {
     @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-blue pt-4 pb-12 px-8;
   }
@@ -79,20 +71,7 @@ body:has(.card[data-color="green"]:hover) {
   }
 }
 
-.glassmorphism {
-  background: rgba(8, 116, 239, 0.07);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.logo {
-  border-radius: 8.889px;
-  background: #fff;
-  box-shadow: 0px 10px 35px -4px rgba(67, 83, 255, 0.15),
-    0px 1.5px 4px -1px rgba(67, 83, 255, 0.2);
-}
+/* PROJECTS AND ABOUT BUTTON */
 
 .block-container {
   position: relative;
@@ -113,8 +92,6 @@ body:has(.card[data-color="green"]:hover) {
   will-change: transform;
   box-shadow: 16px 0 40px #e4e4e4;
 }
-
-/* PROJECT BUTTON COLORS */
 
 .block-container .btn-back-purple {
   background: linear-gradient(135deg, #7117d0 -20%, #c26873 120%);
@@ -163,7 +140,8 @@ body:has(.card[data-color="green"]:hover) {
   transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
 }
 
-/* Neo Brutalism */
+/* NEO BRUTALISM EFFECT */
+
 .neo-brutalism-blue {
   background: #2b77e7;
   position: relative;

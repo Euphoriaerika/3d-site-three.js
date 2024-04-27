@@ -15,18 +15,11 @@ const Bird = () => {
 
   // Use useEffect to play the initial animation when the component mounts
   useEffect(() => {
-    actions["Fly"].play();
+    actions["Hovering"].play();
   }, []);
 
   // Use useFrame to perform animations in the render loop
   useFrame(({ clock }) => {
-    // Update the Y position to simulate flight moving in a sin wave
-
-    // The first argument, clock.elapsedTime, changes over time, resulting in a sinusoidal variation of the function.
-    // Multiplication sets the amplitude of the bird's oscillation.
-    // Addition modifies the initial position of the bird.
-    birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
-
     // Move the bird along the X and Z axes in a circular motion
     const radius = 4; // Circle radius
     const speed = -0.3; // Movement speed
@@ -36,12 +29,12 @@ const Bird = () => {
     birdRef.current.position.z = radius * Math.sin(angle);
     birdRef.current.position.y = Math.sin(angle) + 2;
     // Bird rotation formula relative to rotation around the object
-    birdRef.current.rotation.y = angle + Math.PI;
+    birdRef.current.rotation.y = angle + Math.PI * 2;
   });
 
   // Return a mesh with the loaded bird model
   return (
-    <mesh position={[-5, 2, 1]} scale={[1.2, 1.2, 1.2]} ref={birdRef}>
+    <mesh position={[-5, 2, 1]} scale={[0.05, 0.05, 0.05]} rotation={[6, 0, 0]} ref={birdRef}>
       <primitive object={scene} />
     </mesh>
   );
@@ -49,3 +42,4 @@ const Bird = () => {
 
 // Export the Bird component as the default export
 export default Bird;
+

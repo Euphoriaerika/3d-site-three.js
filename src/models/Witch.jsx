@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 // Import the witch model and animation-related hooks from drei
-import witchScene from "../assets/3d/witch.glb";
+import witchScene from "/witch.glb";
 import { useAnimations, useGLTF } from "@react-three/drei";
 
 const Witch = ({ isRotating, ...props }) => {

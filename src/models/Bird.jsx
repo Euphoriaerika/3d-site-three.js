@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 // Import the bird model and animation-related hooks from drei
-import birdScene from "../assets/3d/bird.glb";
+import birdScene from "/bird.glb";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 

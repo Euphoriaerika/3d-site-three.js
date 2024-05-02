@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 
-import scene from "../assets/3d/avatar.glb";
+import scene from "/avatar.glb";
 
 const Avatar = ({ currentAnimation, ...props }) => {
   // Create a ref to hold a reference to the mesh
